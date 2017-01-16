@@ -1,0 +1,22 @@
+{
+  "name": "Swen",
+  "version": "0.1.0",
+  "summary": "A short description of Swen.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/<GITHUB_USERNAME>/Swen",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Dmitry Poznukhov": "dmitry.poznukhov@sixt.com"
+  },
+  "source": {
+    "git": "https://github.com/<GITHUB_USERNAME>/Swen.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "Swen/Classes/**/*"
+}

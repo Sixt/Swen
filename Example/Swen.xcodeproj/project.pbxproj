@@ -9,11 +9,18 @@
 /* Begin PBXBuildFile section */
 		5C3C37F0F73DF920588068A0 /* Pods_Swen_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91052DFC768F6364EFE3AEED /* Pods_Swen_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
-		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		7D50DAF11E293365001A80DD /* ColorSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D50DAEC1E293365001A80DD /* ColorSelectViewController.swift */; };
+		7D50DAF21E293365001A80DD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D50DAED1E293365001A80DD /* MainViewController.swift */; };
+		7D50DAF31E293365001A80DD /* PerformanceTestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D50DAEE1E293365001A80DD /* PerformanceTestsViewController.swift */; };
+		7D50DAF41E293365001A80DD /* UIColor+Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D50DAEF1E293365001A80DD /* UIColor+Components.swift */; };
+		7D50DAF51E293365001A80DD /* UIEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D50DAF01E293365001A80DD /* UIEvents.swift */; };
+		7D50DAFD1E293ADA001A80DD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D50DAFC1E293ADA001A80DD /* XCTest.framework */; };
+		7D50DAFE1E293AFB001A80DD /* SwenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D50DAF71E293AA0001A80DD /* SwenTests.swift */; };
+		7D50DAFF1E293AFB001A80DD /* SwenPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D50DAF61E293AA0001A80DD /* SwenPerformanceTests.swift */; };
+		7D50DB001E293AFB001A80DD /* NSNotificationPerformanceTestExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D50DAF81E293AA0001A80DD /* NSNotificationPerformanceTestExample.swift */; };
 		FD803D20EFC90710B642AAD1 /* Pods_Swen_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9968F2116F5368F3140B1537 /* Pods_Swen_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,13 +42,20 @@
 		607FACD01AFB9204008FA782 /* Swen_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swen_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* Swen_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Swen_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		7D50DAEC1E293365001A80DD /* ColorSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSelectViewController.swift; sourceTree = "<group>"; };
+		7D50DAED1E293365001A80DD /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		7D50DAEE1E293365001A80DD /* PerformanceTestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformanceTestsViewController.swift; sourceTree = "<group>"; };
+		7D50DAEF1E293365001A80DD /* UIColor+Components.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Components.swift"; sourceTree = "<group>"; };
+		7D50DAF01E293365001A80DD /* UIEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIEvents.swift; sourceTree = "<group>"; };
+		7D50DAF61E293AA0001A80DD /* SwenPerformanceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwenPerformanceTests.swift; sourceTree = "<group>"; };
+		7D50DAF71E293AA0001A80DD /* SwenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwenTests.swift; sourceTree = "<group>"; };
+		7D50DAF81E293AA0001A80DD /* NSNotificationPerformanceTestExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSNotificationPerformanceTestExample.swift; sourceTree = "<group>"; };
+		7D50DAFC1E293ADA001A80DD /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		8166491CDC9A2412C4F359B0 /* Pods-Swen_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swen_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Swen_Example/Pods-Swen_Example.release.xcconfig"; sourceTree = "<group>"; };
 		91052DFC768F6364EFE3AEED /* Pods_Swen_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swen_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9968F2116F5368F3140B1537 /* Pods_Swen_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swen_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D50DAFD1E293ADA001A80DD /* XCTest.framework in Frameworks */,
 				FD803D20EFC90710B642AAD1 /* Pods_Swen_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -72,6 +87,7 @@
 		51ADEFDE018F7B08BFEBA9ED /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7D50DAFC1E293ADA001A80DD /* XCTest.framework */,
 				91052DFC768F6364EFE3AEED /* Pods_Swen_Example.framework */,
 				9968F2116F5368F3140B1537 /* Pods_Swen_Tests.framework */,
 			);
@@ -103,7 +119,11 @@
 			isa = PBXGroup;
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				7D50DAED1E293365001A80DD /* MainViewController.swift */,
+				7D50DAEC1E293365001A80DD /* ColorSelectViewController.swift */,
+				7D50DAEE1E293365001A80DD /* PerformanceTestsViewController.swift */,
+				7D50DAF01E293365001A80DD /* UIEvents.swift */,
+				7D50DAEF1E293365001A80DD /* UIColor+Components.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -124,7 +144,9 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				607FACEB1AFB9204008FA782 /* Tests.swift */,
+				7D50DAF71E293AA0001A80DD /* SwenTests.swift */,
+				7D50DAF61E293AA0001A80DD /* SwenPerformanceTests.swift */,
+				7D50DAF81E293AA0001A80DD /* NSNotificationPerformanceTestExample.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -210,14 +232,18 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 9DKRYCQ8MC;
+						LastSwiftMigration = 0820;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 9DKRYCQ8MC;
+						LastSwiftMigration = 0820;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
 				};
@@ -359,8 +385,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				7D50DAF21E293365001A80DD /* MainViewController.swift in Sources */,
+				7D50DAF11E293365001A80DD /* ColorSelectViewController.swift in Sources */,
+				7D50DAF51E293365001A80DD /* UIEvents.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				7D50DAF41E293365001A80DD /* UIColor+Components.swift in Sources */,
+				7D50DAF31E293365001A80DD /* PerformanceTestsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,7 +398,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				7D50DB001E293AFB001A80DD /* NSNotificationPerformanceTestExample.swift in Sources */,
+				7D50DAFF1E293AFB001A80DD /* SwenPerformanceTests.swift in Sources */,
+				7D50DAFE1E293AFB001A80DD /* SwenTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,8 +447,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -439,7 +473,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -460,8 +494,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -477,9 +513,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -488,12 +525,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ABC87DE6526ADCB5DDCDC840 /* Pods-Swen_Example.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9DKRYCQ8MC;
 				INFOPLIST_FILE = Swen/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -501,12 +542,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8166491CDC9A2412C4F359B0 /* Pods-Swen_Example.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9DKRYCQ8MC;
 				INFOPLIST_FILE = Swen/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -514,6 +559,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BE3E2C0A3AE50325C172D6BB /* Pods-Swen_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 9DKRYCQ8MC;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -526,6 +572,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swen_Example.app/Swen_Example";
 			};
 			name = Debug;
 		};
@@ -533,6 +581,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5FE3D2375F1B7F07F8E726B1 /* Pods-Swen_Tests.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 9DKRYCQ8MC;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -541,6 +590,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swen_Example.app/Swen_Example";
 			};
 			name = Release;
 		};
