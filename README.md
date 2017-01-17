@@ -110,6 +110,7 @@ One of the other main benefits of using Swen is the significant performance incr
 ### Contributors:
 * Dmitry Poznukhov, dmitry.poznukhov@sixt.com
 * Franz Busch,      franz-joseph.busch@sixt.com
+* Dedicated to Sven Röder
 
 ### License
 
