@@ -2,7 +2,7 @@
 
 Pod::Spec.new do |s|
 s.name             = 'Swen'
-s.version          = '0.1.0'
+s.version          = '1.0.0'
 s.summary          = 'Swen - An Event Bus written in Swift.'
 
 # This description is used to generate tags and improve search results.
