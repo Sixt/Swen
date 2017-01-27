@@ -38,10 +38,6 @@ public extension Swen where EventType: Event {
     static func post(_ event: EventType) {
         instance().post(event)
     }
-
-    static var sticky: EventType? {
-        return instance().sticky
-    }
     
 }
 
