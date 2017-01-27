@@ -127,7 +127,7 @@ class SwenTests: XCTestCase {
         let sendingEvent = TestStickyEvent(value: "TestEvent")
         Swen.post(sendingEvent)
 
-        let receivedEvent: TestStickyEvent? = Swen.sticky
+        let receivedEvent: TestStickyEvent? = Swen.sticky()
 
         XCTAssertEqual(sendingEvent.value, receivedEvent?.value)
     }

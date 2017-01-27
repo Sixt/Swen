@@ -29,7 +29,7 @@ class ColorSelectViewController: UIViewController {
     }
 
     private func setupSlidersPosition() {
-        guard let color = Swen<UIEvents.ColorChanged>.sticky?.color else { return }
+        guard let color = Swen<UIEvents.ColorChanged>.sticky()?.color else { return }
 
         redSlider.value = Float(color.components.red)
         greenSlider.value = Float(color.components.green)

@@ -50,7 +50,6 @@ class TestViewController: UIViewController {
         //unregister from events
         Swen<TestEvent>.unregister(self)
     }
-
 }
 ```
 
@@ -74,9 +73,9 @@ struct TestStickyEvent: StickyEvent {
     let name: String
 }
 
-print(Swen<TestStickyEvent>.sticky?.name)
+print(Swen<TestStickyEvent>.sticky()?.name)
 ```
-***Important:*** The sticky property is optional, because the event may not be posted yet!
+***Important:*** The return sticky is optional, because the event may not be posted yet!
 
 The second additions is that if you register for a sticky event and one was already posted before. It will immediately trigger the registered closure
 ```swift
@@ -92,7 +91,53 @@ class TestViewController: UIViewController {
             print(event.name)
         }
     }
+}
+```
 
+### System Events
+To use System Events, write wrapper for interest NSNotifications:
+```swift
+public struct SystemEvents {
+
+    struct ApplicationWillEnterForeground: Event {
+    }
+
+    static func register(storage: SwenStorage = .defaultStorage) {
+
+        let center = NotificationCenter.default
+
+        center.addObserver(forName: .UIApplicationWillEnterForeground, object: nil, queue: nil) { _ in
+
+            Swen.post(ApplicationWillEnterForeground(), in: storage)
+        }
+    }
+}
+```
+
+### Dependency Injection
+To incapsulate test cases from production code and from each other, we suggest to use Dependency Injection and Storages mechanism:
+```swift
+class TestViewController: UIViewController {
+
+    var swenStorage = SwenStorage()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //register for incoming events in custom storage
+        Swen<TestEvent>.register(self, in: swenStorage) { event in
+            print(event.name)
+        }
+
+        //register for incoming events in default storage
+        Swen<TestEvent>.register(self) { event in
+            print(event.name)
+        }
+
+        //post event in custom storage
+        Swen.post(TestEvent(name: "Sixt, custom storage"), in: swenStorage)
+        
+        //post event in default storage
+        Swen.post(TestEvent(name: "Sixt, default storage"))
+    }
 }
 ```
 
