@@ -40,9 +40,7 @@ public extension Swen where EventType: Event {
     }
 
     static func registerOnBackground(_ observer: AnyObject, in storage: SwenStorage = .defaultStorage, handler: @escaping EventListenerClosure) {
-        let queue = OperationQueue()
-        queue.name = "com.sixt.Swen " + String(describing: EventType.self) + String(describing: observer)
-        register(observer, in: storage, onQueue: queue, handler: handler)
+        register(observer, in: storage, onQueue: creteBackgroundQueue(for: observer), handler: handler)
     }
 
     static func post(_ event: EventType, in storage: SwenStorage = .defaultStorage) {
@@ -59,9 +57,7 @@ public extension Swen where EventType: StickyEvent {
     }
 
     static func registerOnBackground(_ observer: AnyObject, in storage: SwenStorage = .defaultStorage, handler: @escaping EventListenerClosure) {
-        let queue = OperationQueue()
-        queue.name = "com.sixt.Swen " + String(describing: EventType.self) + String(describing: observer)
-        register(observer, in: storage, onQueue: queue, handler: handler)
+        register(observer, in: storage, onQueue: creteBackgroundQueue(for: observer), handler: handler)
     }
 
     static func post(_ event: EventType, in storage: SwenStorage = .defaultStorage) {
@@ -127,7 +123,7 @@ fileprivate extension Swen where EventType: StickyEvent {
         let listener = EventListener<EventType>(observer, queue, handler)
         listeners.append(listener)
         if let sticky = sticky {
-            listener.queue.addOperation {
+            queue.addOperation {
                 handler(sticky)
             }
         }
@@ -145,6 +141,12 @@ fileprivate extension Swen where EventType: StickyEvent {
 
 // MARK: private helpers
 fileprivate extension Swen {
+
+    static func creteBackgroundQueue(for observer: AnyObject) -> OperationQueue {
+        let queue = OperationQueue()
+        queue.name = "com.sixt.Swen " + String(describing: EventType.self) + String(describing: observer)
+        return queue
+    }
 
     func postToAll(_ event: EventType) {
         for listener in listeners {

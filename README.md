@@ -115,7 +115,7 @@ public struct SystemEvents {
 ```
 
 ### Dependency Injection
-To incapsulate test cases from production code and from each other, we suggest to use Dependency Injection and Storages mechanism:
+To encapsulate test cases from production code and from each other, we suggest to use Dependency Injection and Storage mechanism:
 ```swift
 class TestViewController: UIViewController {
 
