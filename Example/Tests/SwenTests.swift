@@ -21,6 +21,17 @@ class SwenTests: XCTestCase {
 
     let timeout = 5.0
 
+    func test_SynchronousDispatching_when_Post_Register_on_same_Queue() {
+        var dispatched = false
+        Swen<TestEvent>.register(self) { event in
+            dispatched = true
+        }
+
+        Swen.post(TestEvent())
+        Swen<TestEvent>.unregister(self)
+        XCTAssertTrue(dispatched)
+    }
+
     func test_RegisterOnMain_PostFromMain_Queue() {
         let exp = expectation(description: "eventReceivedExpectation")
         Swen<TestEvent>.register(self) { event in
