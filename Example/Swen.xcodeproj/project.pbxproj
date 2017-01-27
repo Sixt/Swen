@@ -19,7 +19,6 @@
 		7D50DAF51E293365001A80DD /* UIEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D50DAF01E293365001A80DD /* UIEvents.swift */; };
 		7D50DAFD1E293ADA001A80DD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D50DAFC1E293ADA001A80DD /* XCTest.framework */; };
 		7D50DAFE1E293AFB001A80DD /* SwenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D50DAF71E293AA0001A80DD /* SwenTests.swift */; };
-		7D50DAFF1E293AFB001A80DD /* SwenPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D50DAF61E293AA0001A80DD /* SwenPerformanceTests.swift */; };
 		7D50DB001E293AFB001A80DD /* NSNotificationPerformanceTestExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D50DAF81E293AA0001A80DD /* NSNotificationPerformanceTestExample.swift */; };
 		FD803D20EFC90710B642AAD1 /* Pods_Swen_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9968F2116F5368F3140B1537 /* Pods_Swen_Tests.framework */; };
 /* End PBXBuildFile section */
@@ -52,7 +51,6 @@
 		7D50DAEE1E293365001A80DD /* PerformanceTestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformanceTestsViewController.swift; sourceTree = "<group>"; };
 		7D50DAEF1E293365001A80DD /* UIColor+Components.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Components.swift"; sourceTree = "<group>"; };
 		7D50DAF01E293365001A80DD /* UIEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIEvents.swift; sourceTree = "<group>"; };
-		7D50DAF61E293AA0001A80DD /* SwenPerformanceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwenPerformanceTests.swift; sourceTree = "<group>"; };
 		7D50DAF71E293AA0001A80DD /* SwenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwenTests.swift; sourceTree = "<group>"; };
 		7D50DAF81E293AA0001A80DD /* NSNotificationPerformanceTestExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSNotificationPerformanceTestExample.swift; sourceTree = "<group>"; };
 		7D50DAFC1E293ADA001A80DD /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -145,7 +143,6 @@
 			isa = PBXGroup;
 			children = (
 				7D50DAF71E293AA0001A80DD /* SwenTests.swift */,
-				7D50DAF61E293AA0001A80DD /* SwenPerformanceTests.swift */,
 				7D50DAF81E293AA0001A80DD /* NSNotificationPerformanceTestExample.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
@@ -399,7 +396,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D50DB001E293AFB001A80DD /* NSNotificationPerformanceTestExample.swift in Sources */,
-				7D50DAFF1E293AFB001A80DD /* SwenPerformanceTests.swift in Sources */,
 				7D50DAFE1E293AFB001A80DD /* SwenTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

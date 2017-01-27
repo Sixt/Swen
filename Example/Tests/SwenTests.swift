@@ -145,4 +145,41 @@ class SwenTests: XCTestCase {
         Swen<TestEvent>.unregister(self)
     }
 
+    func test_RegisterPost_InStorage() {
+        let storage = SwenStorage()
+        let exp = expectation(description: "eventReceivedExpectation")
+        Swen<TestEvent>.register(self, in: storage) { event in
+            XCTAssertEqual(OperationQueue.current, OperationQueue.main)
+            exp.fulfill()
+        }
+
+        Swen.post(TestEvent(), in: storage)
+
+        waitForExpectations(timeout: timeout)
+        Swen<TestEvent>.unregister(self, in: storage)
+    }
+
+    func test_RegisterPost_InStorage_Overlaping() {
+        let storage1 = SwenStorage()
+        let storage2 = SwenStorage()
+        let exp = expectation(description: "eventReceivedExpectation")
+        Swen<TestEvent>.register(self, in: storage1) { event in
+            XCTAssertEqual(OperationQueue.current, OperationQueue.main)
+            exp.fulfill()
+        }
+
+        Swen<TestEvent>.register(self, in: storage2) { event in
+            XCTFail()
+        }
+
+        Swen<TestEvent>.register(self) { event in
+            XCTFail()
+        }
+
+        Swen.post(TestEvent(), in: storage1)
+
+        waitForExpectations(timeout: timeout)
+        Swen<TestEvent>.unregister(self, in: storage1)
+    }
+
 }
