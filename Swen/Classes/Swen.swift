@@ -8,11 +8,11 @@
 
 import Foundation
 
-public protocol EventBase {}
-public protocol Event: EventBase {}
-public protocol StickyEvent: EventBase {}
+public protocol BaseEvent {}
+public protocol Event: BaseEvent {}
+public protocol StickyEvent: BaseEvent {}
 
-public class Swen<EventType: EventBase> {
+public class Swen<EventType: BaseEvent> {
 
     fileprivate var listeners = [EventListener<EventType>]()
     public typealias EventListenerClosure = (_ event: EventType) -> Void
@@ -73,7 +73,7 @@ public extension Swen {
     
 }
 
-// MARKL: instantiation
+// MARK: instantiation
 fileprivate extension Swen {
 
     static func instance() -> Swen<EventType> {
@@ -118,7 +118,7 @@ fileprivate extension Swen where EventType: StickyEvent {
         listeners.append(listener)
         if let sticky = sticky {
             listener.queue.addOperation {
-                handler(sticky)
+                listener.post(sticky)
             }
         }
     }
@@ -152,7 +152,7 @@ fileprivate extension Swen {
 }
 
 // MARK: subscriber holder
-fileprivate class EventListener<EventType: EventBase> {
+fileprivate class EventListener<EventType: BaseEvent> {
 
     typealias EventListenerClosure = Swen<EventType>.EventListenerClosure
     weak var observer: AnyObject?
