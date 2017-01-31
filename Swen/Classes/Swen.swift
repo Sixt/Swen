@@ -79,7 +79,7 @@ public extension Swen {
     
 }
 
-// MARKL: instantiation
+// MARK: instantiation
 fileprivate extension Swen {
 
     static func instance(in storage: SwenStorage) -> Swen<EventType> {
@@ -123,8 +123,8 @@ fileprivate extension Swen where EventType: StickyEvent {
         let listener = EventListener<EventType>(observer, queue, handler)
         listeners.append(listener)
         if let sticky = sticky {
-            queue.addOperation {
-                handler(sticky)
+            listener.queue.addOperation {
+                listener.post(sticky)
             }
         }
     }
