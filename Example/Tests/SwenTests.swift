@@ -28,9 +28,9 @@ class SwenTests: XCTestCase {
             exp.fulfill()
         }
 
-        Swen<TestEvent>.post(TestEvent())
+        Swen.post(TestEvent())
 
-        waitForExpectations(timeout: timeout, handler: nil)
+        waitForExpectations(timeout: timeout)
         Swen<TestEvent>.unregister(self)
     }
 
@@ -43,10 +43,10 @@ class SwenTests: XCTestCase {
         }
 
         postQueue.addOperation {
-            Swen<TestEvent>.post(TestEvent())
+            Swen.post(TestEvent())
         }
 
-        waitForExpectations(timeout: timeout, handler: nil)
+        waitForExpectations(timeout: timeout)
         Swen<TestEvent>.unregister(self)
     }
 
@@ -57,9 +57,9 @@ class SwenTests: XCTestCase {
             exp.fulfill()
         }
 
-        Swen<TestEvent>.post(TestEvent())
+        Swen.post(TestEvent())
 
-        waitForExpectations(timeout: timeout, handler: nil)
+        waitForExpectations(timeout: timeout)
         Swen<TestEvent>.unregister(self)
     }
 
@@ -73,10 +73,10 @@ class SwenTests: XCTestCase {
         }
 
         postQueue.addOperation {
-            Swen<TestEvent>.post(TestEvent())
+            Swen.post(TestEvent())
         }
 
-        waitForExpectations(timeout: timeout, handler: nil)
+        waitForExpectations(timeout: timeout)
         Swen<TestEvent>.unregister(self)
     }
 
@@ -88,9 +88,9 @@ class SwenTests: XCTestCase {
             exp.fulfill()
         }
 
-        Swen<TestEvent>.post(TestEvent())
+        Swen.post(TestEvent())
 
-        waitForExpectations(timeout: timeout, handler: nil)
+        waitForExpectations(timeout: timeout)
         Swen<TestEvent>.unregister(self)
     }
 
@@ -104,32 +104,45 @@ class SwenTests: XCTestCase {
         }
 
         postQueue.addOperation {
-            Swen<TestEvent>.post(TestEvent())
+            Swen.post(TestEvent())
         }
 
-        waitForExpectations(timeout: timeout, handler: nil)
+        waitForExpectations(timeout: timeout)
         Swen<TestEvent>.unregister(self)
     }
 
     func test_GetStickyOnRegisterAfterPost() {
-        Swen<TestStickyEvent>.post(TestStickyEvent())
+        Swen.post(TestStickyEvent())
 
         let exp = expectation(description: "StickyEventReceivedExpectation")
         Swen<TestStickyEvent>.register(self) { event in
             exp.fulfill()
         }
 
-        waitForExpectations(timeout: timeout, handler: nil)
-        Swen<TestEvent>.unregister(self)
+        waitForExpectations(timeout: timeout)
+        Swen<TestStickyEvent>.unregister(self)
     }
 
     func test_GetStickyAfterPost() {
         let sendingEvent = TestStickyEvent(value: "TestEvent")
-        Swen<TestStickyEvent>.post(sendingEvent)
+        Swen.post(sendingEvent)
 
-        let receivedEvent = Swen<TestStickyEvent>.sticky
+        let receivedEvent: TestStickyEvent? = Swen.sticky
 
         XCTAssertEqual(sendingEvent.value, receivedEvent?.value)
+    }
+
+    func test_Receive_After_PostDifferentEvent() {
+        let exp = expectation(description: "oldEventReceivedExpectation")
+        Swen<TestEvent>.register(self) { event in
+            exp.fulfill()
+        }
+
+        Swen.post(TestStickyEvent())
+        Swen.post(TestEvent())
+
+        waitForExpectations(timeout: timeout)
+        Swen<TestEvent>.unregister(self)
     }
 
 }

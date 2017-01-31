@@ -8,15 +8,11 @@
 
 import Foundation
 
-public protocol Event {
+public protocol BaseEvent {}
+public protocol Event: BaseEvent {}
+public protocol StickyEvent: BaseEvent {}
 
-}
-
-public protocol StickyEvent: Event {
-
-}
-
-public class Swen<EventType: Event> {
+public class Swen<EventType: BaseEvent> {
 
     fileprivate var listeners = [EventListener<EventType>]()
     public typealias EventListenerClosure = (_ event: EventType) -> Void
@@ -26,8 +22,27 @@ public class Swen<EventType: Event> {
 
 }
 
-// MARK: public interface
-public extension Swen {
+// MARK: public non sticky events interface
+public extension Swen where EventType: Event {
+
+    static func register(_ observer: AnyObject, onQueue queue: OperationQueue = .main, handler: @escaping EventListenerClosure) {
+        instance().register(observer, onQueue: queue, handler: handler)
+    }
+
+    static func registerOnBackground(_ observer: AnyObject, handler: @escaping EventListenerClosure) {
+        let queue = OperationQueue()
+        queue.name = "com.sixt.Swen " + String(describing: EventType.self) + String(describing: observer)
+        register(observer, onQueue: queue, handler: handler)
+    }
+
+    static func post(_ event: EventType) {
+        instance().post(event)
+    }
+    
+}
+
+// MARK: public sticky events interface
+public extension Swen where EventType: StickyEvent {
 
     static func register(_ observer: AnyObject, onQueue queue: OperationQueue = .main, handler: @escaping EventListenerClosure) {
         instance().register(observer, onQueue: queue, handler: handler)
@@ -43,22 +58,22 @@ public extension Swen {
         instance().post(event)
     }
 
-    static func unregister(_ observer: AnyObject) {
-        instance().unregister(observer)
-    }
-
-}
-
-// MARK: public sticky events interface
-public extension Swen where EventType: StickyEvent {
-
     static var sticky: EventType? {
         return instance().sticky
     }
     
 }
 
-// MARKL: instantiation
+// MARK: public interface
+public extension Swen {
+
+    static func unregister(_ observer: AnyObject) {
+        instance().unregister(observer)
+    }
+    
+}
+
+// MARK: instantiation
 fileprivate extension Swen {
 
     static func instance() -> Swen<EventType> {
@@ -75,8 +90,25 @@ fileprivate extension Swen {
     }
 }
 
-// MARK: private helpers
-fileprivate extension Swen {
+// MARK: private non sticky methods
+fileprivate extension Swen where EventType: Event {
+
+    func register(_ observer: AnyObject, onQueue queue: OperationQueue, handler: @escaping EventListenerClosure) {
+        _ = editListenersSemaphore.wait(timeout: DispatchTime.distantFuture)
+        defer { editListenersSemaphore.signal() }
+
+        let listener = EventListener<EventType>(observer, queue, handler)
+        listeners.append(listener)
+    }
+
+    func post(_ event: EventType) {
+        postToAll(event)
+    }
+
+}
+
+// MARK: private sticky methods
+fileprivate extension Swen where EventType: StickyEvent {
 
     func register(_ observer: AnyObject, onQueue queue: OperationQueue, handler: @escaping EventListenerClosure) {
         _ = editListenersSemaphore.wait(timeout: DispatchTime.distantFuture)
@@ -93,11 +125,18 @@ fileprivate extension Swen {
 
     func post(_ event: EventType) {
         _ = stickySemaphore.wait(timeout: DispatchTime.distantFuture)
-        if event is StickyEvent {
-            sticky = event
-        }
+        sticky = event
         stickySemaphore.signal()
 
+        postToAll(event)
+    }
+    
+}
+
+// MARK: private helpers
+fileprivate extension Swen {
+
+    func postToAll(_ event: EventType) {
         for listener in listeners {
             listener.post(event)
         }
@@ -113,7 +152,7 @@ fileprivate extension Swen {
 }
 
 // MARK: subscriber holder
-fileprivate class EventListener<EventType: Event> {
+fileprivate class EventListener<EventType: BaseEvent> {
 
     typealias EventListenerClosure = Swen<EventType>.EventListenerClosure
     weak var observer: AnyObject?
