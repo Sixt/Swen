@@ -12,6 +12,16 @@ public protocol BaseEvent {}
 public protocol Event: BaseEvent {}
 public protocol StickyEvent: BaseEvent {}
 
+public class SwenStorage {
+
+    fileprivate var buses = [AnyObject]()
+    fileprivate let instanceSemaphore = DispatchSemaphore(value: 1)
+
+    static public let defaultStorage = SwenStorage()
+
+    public init() {}
+}
+
 public class Swen<EventType: BaseEvent> {
 
     fileprivate var listeners = [EventListener<EventType>]()
@@ -25,18 +35,16 @@ public class Swen<EventType: BaseEvent> {
 // MARK: public non sticky events interface
 public extension Swen where EventType: Event {
 
-    static func register(_ observer: AnyObject, onQueue queue: OperationQueue = .main, handler: @escaping EventListenerClosure) {
-        instance().register(observer, onQueue: queue, handler: handler)
+    static func register(_ observer: AnyObject, in storage: SwenStorage = .defaultStorage, onQueue queue: OperationQueue = .main, handler: @escaping EventListenerClosure) {
+        instance(in: storage).register(observer, onQueue: queue, handler: handler)
     }
 
-    static func registerOnBackground(_ observer: AnyObject, handler: @escaping EventListenerClosure) {
-        let queue = OperationQueue()
-        queue.name = "com.sixt.Swen " + String(describing: EventType.self) + String(describing: observer)
-        register(observer, onQueue: queue, handler: handler)
+    static func registerOnBackground(_ observer: AnyObject, in storage: SwenStorage = .defaultStorage, handler: @escaping EventListenerClosure) {
+        register(observer, in: storage, onQueue: creteBackgroundQueue(for: observer), handler: handler)
     }
 
-    static func post(_ event: EventType) {
-        instance().post(event)
+    static func post(_ event: EventType, in storage: SwenStorage = .defaultStorage) {
+        instance(in: storage).post(event)
     }
     
 }
@@ -44,22 +52,20 @@ public extension Swen where EventType: Event {
 // MARK: public sticky events interface
 public extension Swen where EventType: StickyEvent {
 
-    static func register(_ observer: AnyObject, onQueue queue: OperationQueue = .main, handler: @escaping EventListenerClosure) {
-        instance().register(observer, onQueue: queue, handler: handler)
+    static func register(_ observer: AnyObject, in storage: SwenStorage = .defaultStorage, onQueue queue: OperationQueue = .main, handler: @escaping EventListenerClosure) {
+        instance(in: storage).register(observer, onQueue: queue, handler: handler)
     }
 
-    static func registerOnBackground(_ observer: AnyObject, handler: @escaping EventListenerClosure) {
-        let queue = OperationQueue()
-        queue.name = "com.sixt.Swen " + String(describing: EventType.self) + String(describing: observer)
-        register(observer, onQueue: queue, handler: handler)
+    static func registerOnBackground(_ observer: AnyObject, in storage: SwenStorage = .defaultStorage, handler: @escaping EventListenerClosure) {
+        register(observer, in: storage, onQueue: creteBackgroundQueue(for: observer), handler: handler)
     }
 
-    static func post(_ event: EventType) {
-        instance().post(event)
+    static func post(_ event: EventType, in storage: SwenStorage = .defaultStorage) {
+        instance(in: storage).post(event)
     }
 
-    static var sticky: EventType? {
-        return instance().sticky
+    static func sticky(in storage: SwenStorage = .defaultStorage) -> EventType? {
+        return instance(in: storage).sticky
     }
     
 }
@@ -67,8 +73,8 @@ public extension Swen where EventType: StickyEvent {
 // MARK: public interface
 public extension Swen {
 
-    static func unregister(_ observer: AnyObject) {
-        instance().unregister(observer)
+    static func unregister(_ observer: AnyObject, in storage: SwenStorage = .defaultStorage) {
+        instance(in: storage).unregister(observer)
     }
     
 }
@@ -76,16 +82,16 @@ public extension Swen {
 // MARK: instantiation
 fileprivate extension Swen {
 
-    static func instance() -> Swen<EventType> {
-        _ = SwenStorage.instanceSemaphore.wait(timeout: DispatchTime.distantFuture)
-        defer { SwenStorage.instanceSemaphore.signal() }
+    static func instance(in storage: SwenStorage) -> Swen<EventType> {
+        _ = storage.instanceSemaphore.wait(timeout: DispatchTime.distantFuture)
+        defer { storage.instanceSemaphore.signal() }
 
-        for case let bus as Swen<EventType> in SwenStorage.buses {
+        for case let bus as Swen<EventType> in storage.buses {
             return bus
         }
 
         let bus = Swen<EventType>()
-        SwenStorage.buses.append(bus)
+        storage.buses.append(bus)
         return bus
     }
 }
@@ -136,6 +142,12 @@ fileprivate extension Swen where EventType: StickyEvent {
 // MARK: private helpers
 fileprivate extension Swen {
 
+    static func creteBackgroundQueue(for observer: AnyObject) -> OperationQueue {
+        let queue = OperationQueue()
+        queue.name = "com.sixt.Swen " + String(describing: EventType.self) + String(describing: observer)
+        return queue
+    }
+
     func postToAll(_ event: EventType) {
         for listener in listeners {
             listener.post(event)
@@ -180,12 +192,5 @@ fileprivate class EventListener<EventType: BaseEvent> {
             }
         }
     }
-
-}
-
-fileprivate struct SwenStorage {
-
-    static var buses = [AnyObject]()
-    static let instanceSemaphore = DispatchSemaphore(value: 1)
 
 }
