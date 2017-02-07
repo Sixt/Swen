@@ -191,6 +191,7 @@ class SwenTests: XCTestCase {
 
         waitForExpectations(timeout: timeout)
         Swen<TestEvent>.unregister(self, in: storage1)
+        Swen<TestEvent>.unregister(self)
     }
 
 }
