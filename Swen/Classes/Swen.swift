@@ -181,7 +181,8 @@ fileprivate class EventListener<EventType: BaseEvent> {
 
     func post(_ event: EventType) {
         guard let _ = observer else {
-            fatalError("One of the observers did not unregister, but already dealocated, observer info: " + eventClassName)
+            assertionFailure("One of the observers did not unregister, but already dealocated, observer info: " + eventClassName)
+            return
         }
 
         if OperationQueue.current == queue {
