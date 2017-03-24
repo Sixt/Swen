@@ -194,4 +194,42 @@ class SwenTests: XCTestCase {
         Swen<TestEvent>.unregister(self)
     }
 
+    func test_Register_DeallocateObserver_Post() {
+        var dispatched1 = false
+        var dispatched2 = false
+        var observer: NSObject? = NSObject()
+        Swen<TestEvent>.register(self) { _ in
+            dispatched1 = true
+        }
+        Swen<TestEvent>.register(observer!) { _ in
+            dispatched2 = true
+        }
+
+        observer = nil
+
+        Swen.post(TestEvent())
+        Swen<TestEvent>.unregister(self)
+        XCTAssertTrue(dispatched1)
+        XCTAssertFalse(dispatched2)
+    }
+
+    func test_RegisterSticky_DeallocateObserver_Post() {
+        var dispatched1 = false
+        var dispatched2 = false
+        var observer: NSObject? = NSObject()
+        Swen<TestStickyEvent>.register(self) { _ in
+            dispatched1 = true
+        }
+        Swen<TestStickyEvent>.register(observer!) { _ in
+            dispatched2 = true
+        }
+
+        observer = nil
+
+        Swen.post(TestStickyEvent())
+        Swen<TestEvent>.unregister(self)
+        XCTAssertTrue(dispatched1)
+        XCTAssertFalse(dispatched2)
+    }
+
 }

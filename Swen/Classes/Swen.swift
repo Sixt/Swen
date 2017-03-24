@@ -124,7 +124,11 @@ fileprivate extension Swen where EventType: StickyEvent {
         listeners.append(listener)
         if let sticky = sticky {
             listener.queue.addOperation {
-                listener.post(sticky)
+                if case .failure = listener.post(sticky) {
+                    let newObserver = NSObject()
+                    listener.observer = newObserver
+                    self.unregister(newObserver)
+                }
             }
         }
     }
@@ -150,7 +154,11 @@ fileprivate extension Swen {
 
     func postToAll(_ event: EventType) {
         for listener in listeners {
-            listener.post(event)
+            if case .failure = listener.post(event) {
+                let newObserver = NSObject()
+                listener.observer = newObserver
+                unregister(newObserver)
+            }
         }
     }
 
@@ -165,7 +173,6 @@ fileprivate extension Swen {
 
 // MARK: subscriber holder
 fileprivate class EventListener<EventType: BaseEvent> {
-
     typealias EventListenerClosure = Swen<EventType>.EventListenerClosure
     weak var observer: AnyObject?
     let queue: OperationQueue
@@ -179,11 +186,8 @@ fileprivate class EventListener<EventType: BaseEvent> {
         self.eventClassName = String(describing: observer)
     }
 
-    func post(_ event: EventType) {
-        guard let _ = observer else {
-            assertionFailure("One of the observers did not unregister, but already dealocated, observer info: " + eventClassName)
-            return
-        }
+    func post(_ event: EventType) -> PostOperationResult {
+        guard let _ = observer else { return .failure }
 
         if OperationQueue.current == queue {
             handler(event)
@@ -192,6 +196,11 @@ fileprivate class EventListener<EventType: BaseEvent> {
                 self.handler(event)
             }
         }
+        return .success
     }
+}
 
+fileprivate enum PostOperationResult {
+    case success
+    case failure
 }
