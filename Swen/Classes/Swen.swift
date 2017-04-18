@@ -158,7 +158,9 @@ fileprivate extension Swen {
         _ = editListenersSemaphore.wait(timeout: DispatchTime.distantFuture)
         defer { editListenersSemaphore.signal() }
 
-        listeners = listeners.filter { $0.observer !== observer }
+        listeners = listeners.filter {
+            $0.observerPointer != UnsafeRawPointer(Unmanaged.passUnretained(observer).toOpaque()) && $0.observer !== observer
+        }
     }
 
 }
@@ -168,12 +170,14 @@ fileprivate class EventListener<EventType: BaseEvent> {
 
     typealias EventListenerClosure = Swen<EventType>.EventListenerClosure
     weak var observer: AnyObject?
+    var observerPointer: UnsafeRawPointer
     let queue: OperationQueue
     let handler: EventListenerClosure
     let eventClassName: String
 
     init(_ observer: AnyObject, _ queue: OperationQueue, _ handler: @escaping EventListenerClosure) {
         self.observer = observer
+        self.observerPointer = UnsafeRawPointer(Unmanaged.passUnretained(observer).toOpaque())
         self.handler = handler
         self.queue = queue
         self.eventClassName = String(describing: observer)

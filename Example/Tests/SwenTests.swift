@@ -194,4 +194,43 @@ class SwenTests: XCTestCase {
         Swen<TestEvent>.unregister(self)
     }
 
+    func test_Unregister() {
+        var handlerCalled = false
+        Swen<TestEvent>.register(self) { event in
+            handlerCalled = true
+        }
+
+        Swen.post(TestEvent())
+
+        XCTAssertTrue(handlerCalled)
+        Swen<TestEvent>.unregister(self)
+
+        handlerCalled = false
+        Swen.post(TestEvent())
+        XCTAssertFalse(handlerCalled)
+    }
+
+    func test_DeallocateHandler() {
+
+        class TestObserver {
+            var handlerCalled = false
+            init () {
+                Swen<TestEvent>.register(self) { [weak self] event in
+                    self?.handlerCalled = true
+                }
+            }
+            deinit {
+                Swen<TestEvent>.unregister(self)
+            }
+        }
+
+        var observer: TestObserver? = TestObserver()
+
+        Swen.post(TestEvent())
+
+        XCTAssertTrue(observer!.handlerCalled)
+        observer = nil
+        Swen.post(TestEvent())
+    }
+
 }
