@@ -1,4 +1,9 @@
-## Swen - An Event Bus written in Swift
+# Swen - An Event Bus written in Swift
+
+[![Build Status](https://travis-ci.org/e-Sixt/Swen.svg?branch=master)](https://travis-ci.org/e-Sixt/Swen)
+[![codecov](https://codecov.io/gh/e-Sixt/Swen/branch/master/graph/badge.svg)](https://codecov.io/gh/e-Sixt/Swen)
+[![Badge w/ Version](https://cocoapod-badges.herokuapp.com/v/Swen/badge.png)](https://cocoadocs.org/docsets/NSStringMask)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/e-Sixt/Swen/master/LICENSE)
 
 - [x] Typesafe events
 - [x] Pass custom objects
