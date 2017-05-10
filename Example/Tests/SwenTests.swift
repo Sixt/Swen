@@ -7,8 +7,7 @@
 //
 
 import XCTest
-//
-@testable import Swen
+import Swen
 
 fileprivate struct TestEvent: Event {
 }

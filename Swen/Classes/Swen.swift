@@ -46,7 +46,7 @@ public extension Swen where EventType: Event {
     static func post(_ event: EventType, in storage: SwenStorage = .defaultStorage) {
         instance(in: storage).post(event)
     }
-    
+
 }
 
 // MARK: public sticky events interface
@@ -67,7 +67,7 @@ public extension Swen where EventType: StickyEvent {
     static func sticky(in storage: SwenStorage = .defaultStorage) -> EventType? {
         return instance(in: storage).sticky
     }
-    
+
 }
 
 // MARK: public interface
@@ -76,7 +76,7 @@ public extension Swen {
     static func unregister(_ observer: AnyObject, in storage: SwenStorage = .defaultStorage) {
         instance(in: storage).unregister(observer)
     }
-    
+
 }
 
 // MARK: instantiation
@@ -136,7 +136,7 @@ fileprivate extension Swen where EventType: StickyEvent {
 
         postToAll(event)
     }
-    
+
 }
 
 // MARK: private helpers
