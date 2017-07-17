@@ -232,4 +232,30 @@ class SwenTests: XCTestCase {
         Swen.post(TestEvent())
     }
 
+    
+    func testReleaseObjects() {
+        
+        class TestObserver: NSObject {
+            override init() {
+                super.init()
+                Swen<TestStickyEvent>.register(self) { event in
+                    print("Event dispatched")
+                }
+            }
+            
+            deinit {
+                Swen<TestStickyEvent>.unregister(self)
+            }
+        }
+        
+        var observer: TestObserver!
+        
+        DispatchQueue.main.async {
+            observer = TestObserver()
+            Swen.post(TestStickyEvent())
+        }
+        
+        Swen.post(TestStickyEvent())
+    }
+
 }

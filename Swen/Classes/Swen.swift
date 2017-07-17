@@ -123,7 +123,7 @@ fileprivate extension Swen where EventType: StickyEvent {
         let listener = EventListener<EventType>(observer, queue, handler)
         listeners.append(listener)
         if let sticky = sticky {
-            listener.queue.addOperation {[weak listener] in
+            listener.queue.addOperation { [weak listener] in
                 listener?.post(sticky)
             }
         }
@@ -192,7 +192,7 @@ fileprivate class EventListener<EventType: BaseEvent> {
         if OperationQueue.current == queue {
             handler(event)
         } else {
-            queue.addOperation {[weak self] in
+            queue.addOperation { [weak self] in
                 self?.handler(event)
             }
         }
