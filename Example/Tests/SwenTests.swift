@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import Swen
+@testable import Swen
 
 fileprivate struct TestEvent: Event {
 }
@@ -233,29 +233,22 @@ class SwenTests: XCTestCase {
     }
 
     
-    func testReleaseObjects() {
-        
-        class TestObserver: NSObject {
-            override init() {
-                super.init()
-                Swen<TestStickyEvent>.register(self) { event in
-                    print("Event dispatched")
-                }
-            }
-            
-            deinit {
-                Swen<TestStickyEvent>.unregister(self)
-            }
-        }
-        
-        var observer: TestObserver!
-        
-        DispatchQueue.main.async {
-            observer = TestObserver()
-            Swen.post(TestStickyEvent())
-        }
-        
-        Swen.post(TestStickyEvent())
-    }
+    func testReleaseListeners() {
+        let exp = expectation(description: "XCTAssertCompletionExpectation")
 
+        DispatchQueue.main.async {
+            let observer = NSObject()
+            Swen<TestStickyEvent>.register(observer) { event in
+                print("Event dispatched")
+            }
+
+            weak var listener = Swen<TestStickyEvent>.instance(in: .defaultStorage).listeners.first
+            Swen<TestStickyEvent>.unregister(observer)
+            XCTAssertNil(listener)
+            exp.fulfill()
+        }
+    
+        Swen.post(TestStickyEvent())
+        waitForExpectations(timeout: timeout)
+    }
 }

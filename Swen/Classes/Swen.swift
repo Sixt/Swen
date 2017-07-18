@@ -24,7 +24,7 @@ public class SwenStorage {
 
 public class Swen<EventType: BaseEvent> {
 
-    fileprivate var listeners = [EventListener<EventType>]()
+    internal var listeners = [EventListener<EventType>]()
     public typealias EventListenerClosure = (_ event: EventType) -> Void
     fileprivate var sticky: EventType?
     fileprivate let editListenersSemaphore = DispatchSemaphore(value: 1)
@@ -80,7 +80,7 @@ public extension Swen {
 }
 
 // MARK: instantiation
-fileprivate extension Swen {
+internal extension Swen {
 
     static func instance(in storage: SwenStorage) -> Swen<EventType> {
         _ = storage.instanceSemaphore.wait(timeout: DispatchTime.distantFuture)
@@ -166,7 +166,7 @@ fileprivate extension Swen {
 }
 
 // MARK: subscriber holder
-fileprivate class EventListener<EventType: BaseEvent> {
+internal class EventListener<EventType: BaseEvent> {
 
     typealias EventListenerClosure = Swen<EventType>.EventListenerClosure
     weak var observer: AnyObject?
