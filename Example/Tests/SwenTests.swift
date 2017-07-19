@@ -234,21 +234,47 @@ class SwenTests: XCTestCase {
 
     
     func testReleaseListeners() {
-        let exp = expectation(description: "XCTAssertCompletionExpectation")
-
-        DispatchQueue.main.async {
-            let observer = NSObject()
-            Swen<TestStickyEvent>.register(observer) { event in
-                print("Event dispatched")
-            }
-
-            weak var listener = Swen<TestStickyEvent>.instance(in: .defaultStorage).listeners.first
-            Swen<TestStickyEvent>.unregister(observer)
+        Swen.post(TestStickyEvent())
+        
+        Swen<TestStickyEvent>.register(self) { _ in }
+        weak var listener = Swen<TestStickyEvent>.instance(in: .defaultStorage).listeners.first
+        Swen<TestStickyEvent>.unregister(self)
+        
+        XCTAssertNil(listener)
+    }
+    
+    func testReleaseListenersForNonStickyEvent() {
+        let exp = expectation(description: "unregisterExpectation")
+        let postQueue = OperationQueue()
+        
+        Swen<TestEvent>.register(self) { _ in }
+        
+        postQueue.addOperation {
+            Swen.post(TestEvent())
+            weak var listener = Swen<TestEvent>.instance(in: .defaultStorage).listeners.first
+            Swen<TestEvent>.unregister(self)
             XCTAssertNil(listener)
             exp.fulfill()
         }
-    
-        Swen.post(TestStickyEvent())
+        
         waitForExpectations(timeout: timeout)
     }
+    
+    func testReleaseListenersForStickyEvent() {
+        let exp = expectation(description: "unregisterExpectation")
+        let postQueue = OperationQueue()
+        
+        Swen<TestStickyEvent>.register(self) { _ in }
+        
+        postQueue.addOperation {
+            Swen.post(TestStickyEvent())
+            weak var listener = Swen<TestStickyEvent>.instance(in: .defaultStorage).listeners.first
+            Swen<TestStickyEvent>.unregister(self)
+            XCTAssertNil(listener)
+            exp.fulfill()
+        }
+        
+        waitForExpectations(timeout: timeout)
+    }
+
 }
