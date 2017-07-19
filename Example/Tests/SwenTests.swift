@@ -244,37 +244,25 @@ class SwenTests: XCTestCase {
     }
     
     func testReleaseListenersForNonStickyEvent() {
-        let exp = expectation(description: "unregisterExpectation")
-        let postQueue = OperationQueue()
+        let registerQueue = OperationQueue()
         
-        Swen<TestEvent>.register(self) { _ in }
+        Swen<TestEvent>.register(self, onQueue: registerQueue) { _ in }
+        weak var listener = Swen<TestEvent>.instance(in: .defaultStorage).listeners.first
+        Swen.post(TestEvent())
+        Swen<TestEvent>.unregister(self)
         
-        postQueue.addOperation {
-            Swen.post(TestEvent())
-            weak var listener = Swen<TestEvent>.instance(in: .defaultStorage).listeners.first
-            Swen<TestEvent>.unregister(self)
-            XCTAssertNil(listener)
-            exp.fulfill()
-        }
-        
-        waitForExpectations(timeout: timeout)
+        XCTAssertNil(listener)
     }
     
     func testReleaseListenersForStickyEvent() {
-        let exp = expectation(description: "unregisterExpectation")
-        let postQueue = OperationQueue()
+        let registerQueue = OperationQueue()
         
-        Swen<TestStickyEvent>.register(self) { _ in }
+        Swen<TestStickyEvent>.register(self, onQueue: registerQueue) { _ in }
+        weak var listener = Swen<TestStickyEvent>.instance(in: .defaultStorage).listeners.first
+        Swen.post(TestStickyEvent())
+        Swen<TestStickyEvent>.unregister(self)
         
-        postQueue.addOperation {
-            Swen.post(TestStickyEvent())
-            weak var listener = Swen<TestStickyEvent>.instance(in: .defaultStorage).listeners.first
-            Swen<TestStickyEvent>.unregister(self)
-            XCTAssertNil(listener)
-            exp.fulfill()
-        }
-        
-        waitForExpectations(timeout: timeout)
+        XCTAssertNil(listener)
     }
 
 }
