@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import Swen
+@testable import Swen
 
 fileprivate struct TestEvent: Event {
 }
@@ -230,6 +230,39 @@ class SwenTests: XCTestCase {
         XCTAssertTrue(observer!.handlerCalled)
         observer = nil
         Swen.post(TestEvent())
+    }
+
+    
+    func testReleaseListeners() {
+        Swen.post(TestStickyEvent())
+        
+        Swen<TestStickyEvent>.register(self) { _ in }
+        weak var listener = Swen<TestStickyEvent>.instance(in: .defaultStorage).listeners.first
+        Swen<TestStickyEvent>.unregister(self)
+        
+        XCTAssertNil(listener)
+    }
+    
+    func testReleaseListenersForNonStickyEvent() {
+        let registerQueue = OperationQueue()
+        
+        Swen<TestEvent>.register(self, onQueue: registerQueue) { _ in }
+        weak var listener = Swen<TestEvent>.instance(in: .defaultStorage).listeners.first
+        Swen.post(TestEvent())
+        Swen<TestEvent>.unregister(self)
+        
+        XCTAssertNil(listener)
+    }
+    
+    func testReleaseListenersForStickyEvent() {
+        let registerQueue = OperationQueue()
+        
+        Swen<TestStickyEvent>.register(self, onQueue: registerQueue) { _ in }
+        weak var listener = Swen<TestStickyEvent>.instance(in: .defaultStorage).listeners.first
+        Swen.post(TestStickyEvent())
+        Swen<TestStickyEvent>.unregister(self)
+        
+        XCTAssertNil(listener)
     }
 
 }
