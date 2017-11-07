@@ -1,32 +1,7 @@
-fastlane_version "2.28.4"
+fastlane_version "2.63.0"
 default_platform :ios
 
 platform :ios do
-
-  before_all do
-    ensure_git_status_clean
-    xcversion version: "~> 8.3"
-  end
-
-  after_all do |lane, options|
-    clean_up
-  end
-
-  error do |lane, exception|
-    clean_up
-  end
-
-
-  ####### Private Lanes #######
-
-  private_lane :clean_up do
-    clean_build_artifacts
-
-    reset_git_repo(
-        skip_clean: true
-    )
-  end
-
 
   ####### Testing #######
 
@@ -39,7 +14,20 @@ platform :ios do
       code_coverage: true,
       clean: true
     )
-    sh "curl -s https://codecov.io/bash | bash -s -- -J 'Swen'"
+  end
+
+  ####### Code Coverage #######
+
+  lane :code_coverage do
+    slather(
+        scheme: 'Swible-Example',
+        proj: 'Example/Swible.xcodeproj',
+        workspace: 'Example/Swible.xcworkspace',
+        coveralls: true,
+        circleci: true,
+        ignore: 'Example/*',
+        binary_basename: 'Swible'
+     )
   end
 
 end
