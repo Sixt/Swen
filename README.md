@@ -4,6 +4,7 @@
 [![codecov](https://codecov.io/gh/e-Sixt/Swen/branch/master/graph/badge.svg)](https://codecov.io/gh/e-Sixt/Swen)
 [![Badge w/ Version](https://cocoapod-badges.herokuapp.com/v/Swen/badge.png)](https://cocoadocs.org/docsets/NSStringMask)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/e-Sixt/Swen/master/LICENSE)
+[![codebeat badge](https://codebeat.co/badges/922140ac-79e6-4651-aa9f-968441dc5fff)](https://codebeat.co/projects/github-com-e-sixt-swen-master)
 
 - [x] Typesafe events
 - [x] Pass custom objects
