@@ -12,10 +12,27 @@ public protocol BaseEvent {}
 public protocol Event: BaseEvent {}
 public protocol StickyEvent: BaseEvent {}
 
+fileprivate class Mutex {
+    var value = 1
+    let semaphore = DispatchSemaphore(value: 1)
+
+    func wait() {
+        value -= 1
+        semaphore.wait()
+    }
+
+    func signal() {
+        value += 1
+        semaphore.signal()
+    }
+
+    var isMuted: Bool { return value > 0 }
+}
+
 public class SwenStorage {
 
     fileprivate var buses = [AnyObject]()
-    fileprivate let instanceSemaphore = DispatchSemaphore(value: 1)
+    fileprivate let instanceMutex = Mutex()
 
     static public let defaultStorage = SwenStorage()
 
@@ -27,8 +44,8 @@ public class Swen<EventType: BaseEvent> {
     internal var listeners = [EventListener<EventType>]()
     public typealias EventListenerClosure = (_ event: EventType) -> Void
     fileprivate var sticky: EventType?
-    fileprivate let editListenersSemaphore = DispatchSemaphore(value: 1)
-    fileprivate let stickySemaphore = DispatchSemaphore(value: 1)
+    fileprivate let editListenersMutex = Mutex()
+    fileprivate let stickyMutex = Mutex()
 
 }
 
@@ -83,8 +100,8 @@ public extension Swen {
 internal extension Swen {
 
     static func instance(in storage: SwenStorage) -> Swen<EventType> {
-        _ = storage.instanceSemaphore.wait(timeout: DispatchTime.distantFuture)
-        defer { storage.instanceSemaphore.signal() }
+        storage.instanceMutex.wait()
+        defer { storage.instanceMutex.signal() }
 
         for case let bus as Swen<EventType> in storage.buses {
             return bus
@@ -100,8 +117,8 @@ internal extension Swen {
 fileprivate extension Swen where EventType: Event {
 
     func register(_ observer: AnyObject, onQueue queue: OperationQueue, handler: @escaping EventListenerClosure) {
-        _ = editListenersSemaphore.wait(timeout: DispatchTime.distantFuture)
-        defer { editListenersSemaphore.signal() }
+        editListenersMutex.wait()
+        defer { editListenersMutex.signal() }
 
         let listener = EventListener<EventType>(observer, queue, handler)
         listeners.append(listener)
@@ -117,23 +134,22 @@ fileprivate extension Swen where EventType: Event {
 fileprivate extension Swen where EventType: StickyEvent {
 
     func register(_ observer: AnyObject, onQueue queue: OperationQueue, handler: @escaping EventListenerClosure) {
-        _ = editListenersSemaphore.wait(timeout: DispatchTime.distantFuture)
-        defer { editListenersSemaphore.signal() }
+        editListenersMutex.wait()
+        defer { editListenersMutex.signal() }
 
         let listener = EventListener<EventType>(observer, queue, handler)
         listeners.append(listener)
         if let sticky = sticky {
             listener.queue.addOperation { [weak listener] in
-                listener?.post(sticky)
+                listener?.post(sticky, async: false)
             }
         }
     }
 
     func post(_ event: EventType) {
-        _ = stickySemaphore.wait(timeout: DispatchTime.distantFuture)
+        stickyMutex.wait()
+        defer { stickyMutex.signal() }
         sticky = event
-        stickySemaphore.signal()
-
         postToAll(event)
     }
 
@@ -149,18 +165,16 @@ fileprivate extension Swen {
     }
 
     func postToAll(_ event: EventType) {
-        for listener in listeners {
-            listener.post(event)
-        }
+        editListenersMutex.wait()
+        defer { editListenersMutex.signal() }
+        listeners.forEach { $0.post(event, async: editListenersMutex.value <= 0) }
     }
 
     func unregister(_ observer: AnyObject) {
-        _ = editListenersSemaphore.wait(timeout: DispatchTime.distantFuture)
-        defer { editListenersSemaphore.signal() }
-
-        listeners = listeners.filter {
-            $0.observerPointer != UnsafeRawPointer(Unmanaged.passUnretained(observer).toOpaque()) && $0.observer !== observer
-        }
+        editListenersMutex.wait()
+        defer { editListenersMutex.signal() }
+        let pointer = UnsafeRawPointer(Unmanaged.passUnretained(observer).toOpaque())
+        listeners = listeners.filter { $0.observerPointer != pointer }
     }
 
 }
@@ -170,7 +184,7 @@ internal class EventListener<EventType: BaseEvent> {
 
     typealias EventListenerClosure = Swen<EventType>.EventListenerClosure
     weak var observer: AnyObject?
-    var observerPointer: UnsafeRawPointer
+    let observerPointer: UnsafeRawPointer
     let queue: OperationQueue
     let handler: EventListenerClosure
     let eventClassName: String
@@ -183,13 +197,13 @@ internal class EventListener<EventType: BaseEvent> {
         self.eventClassName = String(describing: observer)
     }
 
-    func post(_ event: EventType) {
+    func post(_ event: EventType, async: Bool) {
         guard let _ = observer else {
             assertionFailure("One of the observers did not unregister, but already dealocated, observer info: " + eventClassName)
             return
         }
 
-        if OperationQueue.current == queue {
+        if !async && OperationQueue.current == queue {
             handler(event)
         } else {
             queue.addOperation { [weak self] in
