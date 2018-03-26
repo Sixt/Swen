@@ -1,0 +1,120 @@
+# Specify the config version - version 2 is latest.
+version: 2
+
+# Define the jobs for the current project.
+jobs:
+  release:
+    macos:
+      xcode: "9.1.0"
+
+    steps:
+      - checkout
+
+      - run:
+          name: Ruby
+          command: |
+            brew install ruby
+            export PATH=/usr/local/bin:$PATH
+            brew link --overwrite ruby
+
+      - restore_cache:
+          keys:
+          - v1-gems-{{ checksum "Gemfile.lock" }}
+          - v1-gems-
+
+      - run:
+          name: Bundle install
+          command: |
+            gem install bundler
+            bundle install
+          environment:
+            BUNDLE_JOBS: 4
+            BUNDLE_RETRY: 3
+            BUNDLE_PATH: vendor/bundle
+
+      - run:
+          name: Release new pod version
+          command: bundle exec pod trunk push
+          environment:
+            BUNDLE_PATH: vendor/bundle
+
+      - save_cache:
+          key: v1-gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+  tests:
+    macos:
+      xcode: "9.1.0"
+
+    steps:
+      - checkout
+
+      - run:
+          name: Ruby
+          command: |
+            brew install ruby
+            export PATH=/usr/local/bin:$PATH
+            brew link --overwrite ruby
+
+      - restore_cache:
+          keys:
+          - v1-gems-{{ checksum "Gemfile.lock" }}
+          - v1-gems-
+
+      - run:
+          name: Bundle install
+          command: |
+            gem install bundler
+            bundle install
+          environment:
+            BUNDLE_JOBS: 4
+            BUNDLE_RETRY: 3
+            BUNDLE_PATH: vendor/bundle
+
+      - run:
+          name: Run unit tests
+          command: bundle exec fastlane tests
+          environment:
+            BUNDLE_PATH: vendor/bundle
+
+      - run:
+          name: Pod lib lint
+          command: bundle exec pod lib lint
+          environment:
+            BUNDLE_PATH: vendor/bundle
+
+      - store_test_results:
+          path: fastlane/test_output/report.xml
+
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: scan-test-results
+
+      - store_artifacts:
+          path: ~/Library/Logs/scan
+          destination: scan-logs
+
+      - save_cache:
+          key: v1-gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+workflows:
+  version: 2
+  release:
+    jobs:
+      - release:
+          filters:
+            tags:
+              only: /^[0-9]+\.[0-9]+\.[0-9]+/
+            branches:
+              ignore: /.*/
+  pull-request:
+    jobs:
+      - tests:
+          filters:
+            branches:
+              only:
+                - /feature.*/
+                - /bugfix.*/
