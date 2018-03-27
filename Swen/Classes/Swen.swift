@@ -41,7 +41,7 @@ public class SwenStorage {
 
 public class Swen<EventType: BaseEvent> {
 
-    internal var listeners = [EventListener<EventType>]()
+    internal var listeners = LinkedList<EventListener<EventType>>()
     public typealias EventListenerClosure = (_ event: EventType) -> Void
     fileprivate var sticky: EventType?
     fileprivate let editListenersMutex = Mutex()
@@ -139,10 +139,9 @@ fileprivate extension Swen where EventType: StickyEvent {
 
         let listener = EventListener<EventType>(observer, queue, handler)
         listeners.append(listener)
-        if let sticky = sticky {
-            listener.queue.addOperation { [weak listener] in
-                listener?.post(sticky, async: false)
-            }
+        guard let sticky = sticky else { return }
+        listener.queue.addOperation { [weak listener] in
+            listener?.post(sticky, async: false)
         }
     }
 
@@ -165,16 +164,14 @@ fileprivate extension Swen {
     }
 
     func postToAll(_ event: EventType) {
-        editListenersMutex.wait()
-        defer { editListenersMutex.signal() }
-        listeners.forEach { $0.post(event, async: editListenersMutex.value <= 0) }
+        listeners.forEach { $0.post(event, async: self.editListenersMutex.value <= 0) }
     }
 
     func unregister(_ observer: AnyObject) {
         editListenersMutex.wait()
         defer { editListenersMutex.signal() }
         let pointer = UnsafeRawPointer(Unmanaged.passUnretained(observer).toOpaque())
-        listeners = listeners.filter { $0.observerPointer != pointer }
+        listeners.filter { $0.observerPointer != pointer }
     }
 
 }
