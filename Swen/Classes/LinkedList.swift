@@ -19,23 +19,20 @@ class Node<Type> {
 class LinkedList<Type>: Sequence {
     var first: Node<Type>?
     var last: Node<Type>?
-    var count = 0
 
     func makeIterator() -> LinkedListIterator<Type> {
         return LinkedListIterator(linkedList: self, current: nil)
     }
 
     func append(_ value: Type) {
-        guard let last = last else {
+        if let last = last {
+            last.next = Node(value)
+            last.next?.prev = last
+            self.last = last.next
+        } else {
             self.first = Node(value)
             self.last = self.first
-            count += 1
-            return
         }
-        last.next = Node(value)
-        last.next?.prev = last
-        self.last = last.next
-        count += 1
     }
 
     func filter(comparator: (Type) -> (Bool)) {
@@ -46,9 +43,8 @@ class LinkedList<Type>: Sequence {
         while item != nil {
             if let item = item, !comparator(item.value) {
                 let prev = item.prev
-                item.prev = item.next
-                item.next = prev
-                count -= 1
+                item.prev?.next = item.next
+                item.next?.prev = prev
                 if item === first {
                     self.first = item.next
                 }
@@ -66,11 +62,11 @@ struct LinkedListIterator<Type>: IteratorProtocol {
     var current: Node<Type>?
 
     mutating func next() -> Type? {
-        guard let current = current else {
-            self.current = linkedList.first
+        if let current = current {
+            self.current = current.next
             return self.current?.value
         }
-        self.current = current.next
+        self.current = linkedList.first
         return self.current?.value
     }
 }

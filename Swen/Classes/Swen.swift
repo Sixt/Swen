@@ -12,7 +12,7 @@ public protocol BaseEvent {}
 public protocol Event: BaseEvent {}
 public protocol StickyEvent: BaseEvent {}
 
-fileprivate class Mutex {
+private class Mutex {
     var value = 1
     let semaphore = DispatchSemaphore(value: 1)
 
