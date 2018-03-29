@@ -5,17 +5,12 @@ version: 2
 jobs:
   release:
     macos:
-      xcode: "9.1.0"
+      xcode: "9.2.0"
+
+    shell: /bin/bash --login -eo pipefail
 
     steps:
       - checkout
-
-      - run:
-          name: Ruby
-          command: |
-            brew install ruby
-            export PATH=/usr/local/bin:$PATH
-            brew link --overwrite ruby
 
       - restore_cache:
           keys:
@@ -24,9 +19,7 @@ jobs:
 
       - run:
           name: Bundle install
-          command: |
-            gem install bundler
-            bundle install
+          command: bundle install
           environment:
             BUNDLE_JOBS: 4
             BUNDLE_RETRY: 3
@@ -45,17 +38,12 @@ jobs:
 
   tests:
     macos:
-      xcode: "9.1.0"
+      xcode: "9.2.0"
 
+    shell: /bin/bash --login -eo pipefail
+    
     steps:
       - checkout
-
-      - run:
-          name: Ruby
-          command: |
-            brew install ruby
-            export PATH=/usr/local/bin:$PATH
-            brew link --overwrite ruby
 
       - restore_cache:
           keys:
@@ -64,9 +52,7 @@ jobs:
 
       - run:
           name: Bundle install
-          command: |
-            gem install bundler
-            bundle install
+          command: bundle install
           environment:
             BUNDLE_JOBS: 4
             BUNDLE_RETRY: 3
