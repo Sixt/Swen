@@ -12,6 +12,7 @@
 		26621AE86A982D533D00DAB5A4E302D3 /* Pods-Swen_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E7257A03F3995E94B44DCE258A30FC9A /* Pods-Swen_Example-dummy.m */; };
 		64D4FECE16D66CCE68498F6FA78B21AB /* Swen-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 60E1A5D831B899F17CD1C21DF0D15C33 /* Swen-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		773A5B7FF9155E4E97935486AF885ECF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		7D46AF73206B8B9F005ACDC0 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D46AF72206B8B9F005ACDC0 /* LinkedList.swift */; };
 		7D50DAEB1E29328A001A80DD /* Swen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D50DAEA1E29328A001A80DD /* Swen.swift */; };
 		8F698B2313E79E7C877FE7C959F25B1D /* Pods-Swen_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9366AD6BD80BFD0F0FB91D1982385C /* Pods-Swen_Tests-dummy.m */; };
 		B3D5C27CF0611F1B569A7514F0B7A621 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
@@ -42,6 +43,7 @@
 		690525A72ED27DFF76669B691BAF8A85 /* Pods-Swen_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Swen_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		6E9366AD6BD80BFD0F0FB91D1982385C /* Pods-Swen_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Swen_Tests-dummy.m"; sourceTree = "<group>"; };
 		6FFC4DEDAD321ED0AB40E999ED278989 /* Pods_Swen_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swen_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D46AF72206B8B9F005ACDC0 /* LinkedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
 		7D50DAEA1E29328A001A80DD /* Swen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swen.swift; sourceTree = "<group>"; };
 		80190C55A47B6AE7C0070F478FC198B1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -129,6 +131,7 @@
 		458582EC2ECD722A6ADFB2A1545036E9 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				7D46AF72206B8B9F005ACDC0 /* LinkedList.swift */,
 				7D50DAEA1E29328A001A80DD /* Swen.swift */,
 			);
 			path = Classes;
@@ -353,6 +356,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D46AF73206B8B9F005ACDC0 /* LinkedList.swift in Sources */,
 				7D50DAEB1E29328A001A80DD /* Swen.swift in Sources */,
 				C35F1FF464C810A4013CFDF6CAA302ED /* Swen-dummy.m in Sources */,
 			);

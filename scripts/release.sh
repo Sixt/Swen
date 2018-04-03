@@ -1,3 +1,3 @@
 #!/bin/sh
 
-pod trunk push
+pod trunk push --allow-warnings
