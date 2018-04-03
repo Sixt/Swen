@@ -27,7 +27,7 @@ jobs:
 
       - run:
           name: Release new pod version
-          command: bundle exec pod trunk push
+          command: bundle exec pod trunk push --allow-warnings
           environment:
             BUNDLE_PATH: vendor/bundle
 
