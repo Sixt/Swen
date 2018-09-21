@@ -1,16 +1,16 @@
 PODS:
-  - Swen (0.1.0)
+  - Swen (1.4.5)
 
 DEPENDENCIES:
   - Swen (from `../`)
 
 EXTERNAL SOURCES:
   Swen:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  Swen: 452bf4a7749237bc5942fdf65f34667060488d1e
+  Swen: 9b11f3f688aacdb72afae53a87851cce6af6bc34
 
 PODFILE CHECKSUM: 6e961e57b953b34043364507cb24afe090f6d0b9
 
-COCOAPODS: 1.1.0.rc.2
+COCOAPODS: 1.5.3
