@@ -1,0 +1,13 @@
+disabled_rules:
+  - cyclomatic_complexity
+  - file_length
+  - function_body_length
+  - line_length
+  - force_unwrapping
+  - type_body_length
+  - type_name
+  - force_try
+  - force_cast
+
+opt_in_rules:
+  - single_test_class
