@@ -11,13 +11,36 @@
 - [x] Sticky events
 - [x] Fast and small
 
-## Getting started
+## Installation
 
-Swen is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+Swen is available through [CocoaPods](#cocoapods), [Carthage](#carthage) and [Swift Package Manager](#swift-package-manager).
+
+### CocoaPods
+
+To install it using [CocoaPods](https://cocoapods.org), simply add the following line to your Podfile:
 
 ```ruby
 pod "Swen"
+```
+
+### Carthage
+
+To install it via [Carthage](https://github.com/Carthage/Carthage), add the following line to your Cartfile and follow the instructions to [adding frameworks to an application](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application):
+
+```
+github "e-Sixt/Swen"
+```
+
+### Swift Package Manager
+
+To install it using the [Swift Package Manager](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app), either directly add it to your project using Xcode 11, or specify it as dependency in the Package.swift file:
+
+```swift
+// ...
+dependencies: [
+    .package(url: "https://github.com/e-Sixt/Swen.git", from: "2.0.0"),
+],
+//...
 ```
 
 ## Example
@@ -139,7 +162,7 @@ class TestViewController: UIViewController {
 
         //post event in custom storage
         Swen.post(TestEvent(name: "Sixt, custom storage"), in: swenStorage)
-        
+
         //post event in default storage
         Swen.post(TestEvent(name: "Sixt, default storage"))
     }
@@ -149,10 +172,10 @@ class TestViewController: UIViewController {
 ## Performance
 One of the other main benefits of using Swen is the significant performance increase over NSNotificationCenter
 
-| Performance Test                        | NSNotificationCenter   | SwiftBus   |
-| ----------------------------------------|:----------------------:| ----------:|
-| Perform 10ˆ6 Events to 1 receiver       | 6.54s                  | 2.61s      |
-| Perform 10ˆ3 Events to 10ˆ3 receivers   | 14.42s                 | 11.15s     |
+| Performance Test                      | NSNotificationCenter | SwiftBus |
+| ------------------------------------- | :------------------: | -------: |
+| Perform 10ˆ6 Events to 1 receiver     |        6.54s         |    2.61s |
+| Perform 10ˆ3 Events to 10ˆ3 receivers |        14.42s        |   11.15s |
 
 ### Author
 * e-Sixt, sixtlabs@sixt.com
@@ -167,4 +190,3 @@ One of the other main benefits of using Swen is the significant performance incr
 Swen is available under the MIT license. See the LICENSE file for more info.
 
 ![alt text](https://github.com/e-Sixt/Swen/raw/master/logo.png "Logo Title Text 1")
-
