@@ -3,11 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04457AC82331726300D3F8D9 /* Swen in Frameworks */ = {isa = PBXBuildFile; productRef = 04457AC72331726300D3F8D9 /* Swen */; };
+		04D3B829234A399E003554E5 /* Swen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D3B820234A399E003554E5 /* Swen.framework */; };
+		04D3B843234A3A3D003554E5 /* Swen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D3B83D234A3A38003554E5 /* Swen.swift */; };
+		04D3B844234A3A3D003554E5 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D3B83E234A3A38003554E5 /* LinkedList.swift */; };
+		04D3B845234A3A42003554E5 /* SwenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D3B840234A3A38003554E5 /* SwenTests.swift */; };
+		04D3B846234A3AC1003554E5 /* Swen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D3B820234A399E003554E5 /* Swen.framework */; };
+		04D3B847234A3AC1003554E5 /* Swen.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 04D3B820234A399E003554E5 /* Swen.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
@@ -19,9 +24,45 @@
 		7D50DAF51E293365001A80DD /* UIEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D50DAF01E293365001A80DD /* UIEvents.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		04D3B82A234A399E003554E5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 607FACC81AFB9204008FA782 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04D3B81F234A399E003554E5;
+			remoteInfo = Swen;
+		};
+		04D3B848234A3AC1003554E5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 607FACC81AFB9204008FA782 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04D3B81F234A399E003554E5;
+			remoteInfo = Swen;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		04D3B84A234A3AC1003554E5 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				04D3B847234A3AC1003554E5 /* Swen.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		04457AC6233170DD00D3F8D9 /* Swen */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Swen; path = ..; sourceTree = "<group>"; };
 		04457AC92334185400D3F8D9 /* Sample.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Sample.xcconfig; sourceTree = "<group>"; };
+		04D3B820234A399E003554E5 /* Swen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04D3B828234A399E003554E5 /* SwenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		04D3B83D234A3A38003554E5 /* Swen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swen.swift; sourceTree = "<group>"; };
+		04D3B83E234A3A38003554E5 /* LinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
+		04D3B840234A3A38003554E5 /* SwenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwenTests.swift; sourceTree = "<group>"; };
+		04D3B842234A3A38003554E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0845C36CB38CD0DF934739F5 /* Swen.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Swen.podspec; path = ../Swen.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		1C3E80831FDA3C8C8B330E7B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		4D26E5DD144A82DC71939793 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -40,17 +81,60 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		04D3B81D234A399E003554E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04D3B825234A399E003554E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04D3B829234A399E003554E5 /* Swen.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		607FACCD1AFB9204008FA782 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04457AC82331726300D3F8D9 /* Swen in Frameworks */,
+				04D3B846234A3AC1003554E5 /* Swen.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04D3B83B234A3A38003554E5 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				04D3B83C234A3A38003554E5 /* Swen */,
+			);
+			name = Sources;
+			path = ../Sources;
+			sourceTree = "<group>";
+		};
+		04D3B83C234A3A38003554E5 /* Swen */ = {
+			isa = PBXGroup;
+			children = (
+				04D3B83D234A3A38003554E5 /* Swen.swift */,
+				04D3B83E234A3A38003554E5 /* LinkedList.swift */,
+			);
+			path = Swen;
+			sourceTree = "<group>";
+		};
+		04D3B83F234A3A38003554E5 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				04D3B840234A3A38003554E5 /* SwenTests.swift */,
+				04D3B842234A3A38003554E5 /* Info.plist */,
+			);
+			name = Tests;
+			path = ../Tests;
+			sourceTree = "<group>";
+		};
 		51ADEFDE018F7B08BFEBA9ED /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -63,8 +147,9 @@
 			isa = PBXGroup;
 			children = (
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
+				04D3B83B234A3A38003554E5 /* Sources */,
+				04D3B83F234A3A38003554E5 /* Tests */,
 				607FACD21AFB9204008FA782 /* Sample */,
-				04457AC6233170DD00D3F8D9 /* Swen */,
 				607FACD11AFB9204008FA782 /* Products */,
 				51ADEFDE018F7B08BFEBA9ED /* Frameworks */,
 			);
@@ -74,6 +159,8 @@
 			isa = PBXGroup;
 			children = (
 				607FACD01AFB9204008FA782 /* Swen_Example.app */,
+				04D3B820234A399E003554E5 /* Swen.framework */,
+				04D3B828234A399E003554E5 /* SwenTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -116,7 +203,53 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		04D3B81B234A399E003554E5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		04D3B81F234A399E003554E5 /* Swen */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04D3B835234A399E003554E5 /* Build configuration list for PBXNativeTarget "Swen" */;
+			buildPhases = (
+				04D3B81B234A399E003554E5 /* Headers */,
+				04D3B81C234A399E003554E5 /* Sources */,
+				04D3B81D234A399E003554E5 /* Frameworks */,
+				04D3B81E234A399E003554E5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Swen;
+			productName = Swen;
+			productReference = 04D3B820234A399E003554E5 /* Swen.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		04D3B827234A399E003554E5 /* SwenTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04D3B836234A399E003554E5 /* Build configuration list for PBXNativeTarget "SwenTests" */;
+			buildPhases = (
+				04D3B824234A399E003554E5 /* Sources */,
+				04D3B825234A399E003554E5 /* Frameworks */,
+				04D3B826234A399E003554E5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				04D3B82B234A399E003554E5 /* PBXTargetDependency */,
+			);
+			name = SwenTests;
+			productName = SwenTests;
+			productReference = 04D3B828234A399E003554E5 /* SwenTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		607FACCF1AFB9204008FA782 /* Swen_Example */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Swen_Example" */;
@@ -125,14 +258,15 @@
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
+				04D3B84A234A3AC1003554E5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				04D3B849234A3AC1003554E5 /* PBXTargetDependency */,
 			);
 			name = Swen_Example;
 			packageProductDependencies = (
-				04457AC72331726300D3F8D9 /* Swen */,
 			);
 			productName = Swen;
 			productReference = 607FACD01AFB9204008FA782 /* Swen_Example.app */;
@@ -144,10 +278,19 @@
 		607FACC81AFB9204008FA782 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Sixt SE";
 				TargetAttributes = {
+					04D3B81F234A399E003554E5 = {
+						CreatedOnToolsVersion = 11.0;
+						LastSwiftMigration = 1100;
+						ProvisioningStyle = Automatic;
+					};
+					04D3B827234A399E003554E5 = {
+						CreatedOnToolsVersion = 11.0;
+						ProvisioningStyle = Automatic;
+					};
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
 						LastSwiftMigration = 1100;
@@ -168,11 +311,27 @@
 			projectRoot = "";
 			targets = (
 				607FACCF1AFB9204008FA782 /* Swen_Example */,
+				04D3B81F234A399E003554E5 /* Swen */,
+				04D3B827234A399E003554E5 /* SwenTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		04D3B81E234A399E003554E5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04D3B826234A399E003554E5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		607FACCE1AFB9204008FA782 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -203,6 +362,23 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		04D3B81C234A399E003554E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04D3B844234A3A3D003554E5 /* LinkedList.swift in Sources */,
+				04D3B843234A3A3D003554E5 /* Swen.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04D3B824234A399E003554E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04D3B845234A3A42003554E5 /* SwenTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		607FACCC1AFB9204008FA782 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -217,6 +393,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		04D3B82B234A399E003554E5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 04D3B81F234A399E003554E5 /* Swen */;
+			targetProxy = 04D3B82A234A399E003554E5 /* PBXContainerItemProxy */;
+		};
+		04D3B849234A3AC1003554E5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 04D3B81F234A399E003554E5 /* Swen */;
+			targetProxy = 04D3B848234A3AC1003554E5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		607FACD91AFB9204008FA782 /* Main.storyboard */ = {
@@ -238,6 +427,123 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		04D3B831234A399E003554E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = Sample/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sixt.Swen;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		04D3B832234A399E003554E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = Sample/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sixt.Swen;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		04D3B833234A399E003554E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = ../Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sixt.SwenTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		04D3B834234A399E003554E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = ../Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sixt.SwenTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		607FACED1AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 04457AC92334185400D3F8D9 /* Sample.xcconfig */;
@@ -338,8 +644,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -353,10 +658,7 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Sample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sixt.${PRODUCT_NAME:rfc1034identifier}${SAMPLE_CODE_DISAMBIGUATOR}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -373,10 +675,7 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Sample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sixt.${PRODUCT_NAME:rfc1034identifier}${SAMPLE_CODE_DISAMBIGUATOR}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -387,6 +686,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		04D3B835234A399E003554E5 /* Build configuration list for PBXNativeTarget "Swen" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04D3B831234A399E003554E5 /* Debug */,
+				04D3B832234A399E003554E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04D3B836234A399E003554E5 /* Build configuration list for PBXNativeTarget "SwenTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04D3B833234A399E003554E5 /* Debug */,
+				04D3B834234A399E003554E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "Swen" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -406,13 +723,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		04457AC72331726300D3F8D9 /* Swen */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Swen;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 607FACC81AFB9204008FA782 /* Project object */;
 }
