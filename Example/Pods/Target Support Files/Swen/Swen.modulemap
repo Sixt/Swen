@@ -1,6 +1,0 @@
-framework module Swen {
-  umbrella header "Swen-umbrella.h"
-
-  export *
-  module * { export * }
-}

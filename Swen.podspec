@@ -2,7 +2,7 @@
 
 Pod::Spec.new do |s|
 s.name             = 'Swen'
-s.version          = '1.4.5'
+s.version          = '2.0.0'
 s.summary          = 'Swen - An Event Bus written in Swift.'
 
 s.description      = <<-DESC
@@ -16,6 +16,6 @@ s.source           = { :git => 'https://github.com/e-Sixt/Swen.git', :tag => s.v
 
 s.ios.deployment_target = '9.0'
 
-s.source_files = 'Swen/Classes/**/*'
+s.source_files = 'Sources/**/*'
 
 end
